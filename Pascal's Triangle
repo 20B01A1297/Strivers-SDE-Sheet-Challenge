@@ -1,0 +1,33 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> pascalTriangle=new ArrayList<List<Integer>>();
+        ArrayList<Integer> firstRow = new ArrayList<Integer>();
+        firstRow.add(1);
+        pascalTriangle.add(firstRow);
+        if(numRows==1){
+            return pascalTriangle;
+        }
+        ArrayList<Integer> secRow = new ArrayList<Integer>();
+        secRow.add(1);
+        secRow.add(1);
+        pascalTriangle.add(secRow);
+        if(numRows==2){
+            return pascalTriangle;
+        }
+        int reminingRows=numRows-2;
+        ArrayList<Integer> prev=secRow;
+        while(reminingRows>0){
+            ArrayList<Integer> currentList = new ArrayList<Integer>();
+            currentList.add(1);
+            for(int i=0;i<prev.size()-1;i++){
+                currentList.add(prev.get(i)+prev.get(i+1));
+            }
+            currentList.add(1);
+            pascalTriangle.add(currentList);
+            prev=currentList;
+            reminingRows-=1;
+
+        }
+        return pascalTriangle;
+    }
+}
